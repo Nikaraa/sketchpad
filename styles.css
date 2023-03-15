@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Roboto+Mono:wght@200&display=swap');
 
 * {
+    margin: 0;
     font-family: 'Climate Crisis', cursive;
     font-family: 'Roboto Mono', monospace;
     color: rgb(63, 62, 62);
 }
 
 html {
-
     min-height: 100%;
     background-color: rgb(198, 188, 176);
 }
@@ -36,7 +36,7 @@ html {
 }
 
 .grid-container {
-    
+    user-select: none;
     display: grid;
     width: 600px;
     height: 600px;
@@ -55,6 +55,11 @@ button {
     cursor: pointer;
 }
 
+button:hover, input[type='color']:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
 .change-color {
     width: 100px;
     height: 100px;
@@ -65,7 +70,7 @@ button {
 
 .active {
     transform: scale(1.05);
-    background-color: grey;
+    background-color: rgb(149, 144, 144);
 }
 
 
@@ -74,7 +79,7 @@ button {
     text-align: center;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    min-width: 100%;
     padding: 30px 0px;
     font-size: 20px;
     background: aliceblue;

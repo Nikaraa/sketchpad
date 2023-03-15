@@ -4,14 +4,14 @@ const initialMode = 'draw';
 const grid = document.querySelector('.grid-container')
 const colorPicker = document.querySelector('.change-color')
 const eraser = document.querySelector('.eraser')
-const delAll = document.querySelector('.clear')
+const clear = document.querySelector('.clear')
 const draw = document.querySelector('.draw')
 let currentColor = initialColor
 let currentMode = initialMode
 
-draw.onclick = () => setMode("draw");
-eraser.onclick = () => setMode("eraser");
-
+draw.onclick = () => setMode("draw")
+eraser.onclick = () => setMode("eraser")
+clear.onclick = () => reload()
 
 colorPicker.oninput = (e) => setColor(e.target.value)
 
@@ -32,16 +32,18 @@ function createGrid() {
 }
 
 function changeColor(e) {
+    if(!mouseDown&& e.type==="mouseover") return;
     if (currentMode === "draw") {
         e.target.style.backgroundColor = currentColor
     }
     else if (currentMode === "eraser") {
-        e.target.style.backgroundColor = "#fefefe";
+        e.target.style.backgroundColor = "white"
     }
 }
 
 function setMode(newMode) {
     currentMode = newMode
+    activeButt(newMode)
 }
 
 function setColor(newColor) {
@@ -49,27 +51,25 @@ function setColor(newColor) {
 }
 
 function clearGrid() {
-    grid.textContent = ''
+    gridElement.target.style.backgroundColor="white"
+}
+
+function reload(){
+    clearGrid()
+    createGrid()
 }
 
 function activeButt(newMode) {
-    if (currentMode === "draw") {
+    if(newMode==="draw"){
+        draw.classList.add('active')
+        eraser.classList.remove('active')
+    }
+    else if(newMode==="eraser"){
+        eraser.classList.add('active')
         draw.classList.remove('active')
     }
-    else if (currentMode === "eraser") {
-        eraser.classList.remove('active');
-    }
 
-    if (newMode === "draw") {
-        draw.classList.add('active')
-    }
-    if (newMode === "eraser") {
-        eraser.classList.add('active')
-    }
 }
-
-
-
 
 window.onload = () => {
     createGrid()
