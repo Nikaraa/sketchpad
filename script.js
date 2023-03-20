@@ -51,7 +51,7 @@ function setColor(newColor) {
 }
 
 function clearGrid() {
-    gridElement.target.style.backgroundColor="white"
+    grid.innerHTML=""
 }
 
 function reload(){

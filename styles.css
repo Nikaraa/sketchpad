@@ -84,3 +84,7 @@ button:hover, input[type='color']:hover {
     font-size: 20px;
     background: aliceblue;
 }
+
+.clear{
+    background-color: white;
+}
