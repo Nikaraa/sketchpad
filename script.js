@@ -11,13 +11,17 @@ const colorPicker = document.querySelector('.change-color')
 const eraser = document.querySelector('.eraser')
 const clear = document.querySelector('.clear')
 const draw = document.querySelector('.draw')
+const rainbow = document.querySelector('.rainbow')
+
 let currentColor = initialColor
 let currentMode = initialMode
 let currentSize = initialSize
 
+rainbow.onclick = () => setMode("rainbow")
 draw.onclick = () => setMode("draw")
 eraser.onclick = () => setMode("eraser")
 clear.onclick = () => reload()
+
 
 size.onmousemove = (e) => updateDiv(e.target.value)
 size.onchange = (e) => updateSize(e.target.value)
@@ -49,8 +53,15 @@ function createGrid(gridSize) {
         gridElement.addEventListener('mouseover', changeColor)
         gridElement.addEventListener('mousedown', changeColor)
         grid.appendChild(gridElement)
-        sizeValue.textContent=gridSize+"x"+gridSize
+        sizeValue.textContent = gridSize + "x" + gridSize
     }
+}
+
+function rainbowMode(e) {
+    const mix1 = Math.floor(Math.random() * 256)
+    const mix2 = Math.floor(Math.random() * 256)
+    const mix3 = Math.floor(Math.random() * 256)
+    e.target.style.backgroundColor = `rgb(${mix1}, ${mix2}, ${mix3})`
 }
 
 function changeColor(e) {
@@ -60,6 +71,9 @@ function changeColor(e) {
     }
     else if (currentMode === "eraser") {
         e.target.style.backgroundColor = "white"
+    }
+    else if (currentMode === "rainbow") {
+        rainbowMode(e)
     }
 }
 
@@ -85,12 +99,18 @@ function activeButt(newMode) {
     if (newMode === "draw") {
         draw.classList.add('active')
         eraser.classList.remove('active')
+        rainbow.classList.remove('active')
     }
     else if (newMode === "eraser") {
         eraser.classList.add('active')
         draw.classList.remove('active')
+        rainbow.classList.remove('active')
     }
-
+    else if (newMode === "rainbow") {
+        eraser.classList.remove('active')
+        rainbow.classList.add('active')
+        draw.classList.remove('active')
+    }
 }
 
 window.onload = () => {
