@@ -33,6 +33,7 @@ html {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    align-items: center;
 }
 
 .grid-container {
@@ -45,7 +46,7 @@ html {
 }
 
 button {
-
+    align-self: flex-start;
     border: 2px solid rgb(33, 34, 35);
     border-radius: 10px;
     background: rgb(215, 220, 215);
@@ -60,11 +61,21 @@ button:hover, input[type='color']:hover {
     transition: transform 0.2s ease-in-out;
 }
 
+.size{
+    align-self: flex-start;
+    width: 200px;
+}
+
+.size-value{
+    font-size: 25px;
+}
+
 .change-color {
     width: 100px;
     height: 100px;
     background: none;
     border: none;
+    align-self: flex-start;
     cursor: pointer;
 }
 
@@ -72,8 +83,6 @@ button:hover, input[type='color']:hover {
     transform: scale(1.05);
     background-color: rgb(149, 144, 144);
 }
-
-
 
 .footer {
     text-align: center;
